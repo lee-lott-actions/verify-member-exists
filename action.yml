@@ -1,6 +1,6 @@
 name: Verify Member Exists
 description: Validates if a GitHub user is a member of the specified organization using the GitHub API.
-author: Louisiana Office of Technology Services
+author: Lee Lott
 
 inputs:
   member-name:
