@@ -1,0 +1,35 @@
+name: Verify Member Exists
+description: Validates if a GitHub user is a member of the specified organization using the GitHub API.
+author: Louisiana Office of Technology Services
+
+inputs:
+  member-name:
+    description: 'The slugified username of the member to validate (e.g., "john-doe")'
+    required: true
+  token:
+    description: 'GitHub token with organization read permissions'
+    required: true
+  owner:
+    description: 'The owner of the organization (user or organization)'
+    required: true
+
+outputs:
+  result:
+    description: 'Result of the action ("success" or "failure")'
+    value: ${{ steps.action.outputs.result }}
+  member-exists:
+    description: 'Whether the user is a member of the organization ("true" or "false")'
+    value: ${{ steps.action.outputs.member-exists }}
+  error-message:
+    description: 'Error message if the member is not confirmed a member of the organizaton'
+    value: ${{ steps.action.outputs.error-message }}    
+
+runs:
+  using: composite
+  steps:
+    - name: Verify Member Exists
+      id: action
+      run: |
+        source ${{ github.action_path }}/action.sh
+        verify_member_exists "${{ inputs.member-name }}" "${{ inputs.token }}" "${{ inputs.owner }}"
+      shell: bash
