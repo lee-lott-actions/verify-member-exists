@@ -45,7 +45,7 @@ This GitHub Action validates if a specified GitHub user is a member of an organi
        steps:
          - name: Verify Member Exists
            id: verify
-           uses: lee-lott-actions/verify-member-exists@v1.0.0
+           uses: lee-lott-actions/verify-member-exists@v1
            with:
              member-name: ${{ github.event.inputs.member-name }}
              token: ${{ secrets.GITHUB_TOKEN }}
