@@ -21,7 +21,7 @@ This GitHub Action validates if a specified GitHub user is a member of an organi
 |-----------------|----------------------------------------------------------|
 | `result`       | Result of the action ("success" or "failure")         |
 | `member-exists` | Whether the user is a member of the organization (`true` or `false`). |
-| `error_message`| Error message if the member existence check fails. |
+| `error-message`| Error message if the member existence check fails. |
 
 ## Usage
 1. **Add the Action to Your Workflow**:
