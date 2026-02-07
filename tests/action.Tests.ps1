@@ -63,7 +63,7 @@ Describe "Test-MemberExists" {
 	It "writes result=failure and error-message on exception" {
 		Mock Invoke-WebRequest { throw "API Error" }
 
-		Test-RepoExists -RepoName $RepoName -Token $Token -Owner $Owner
+		Test-MemberExists -MemberName $MemberName -Token $Token -Owner $Owner
 
 		$output = Get-Content $env:GITHUB_OUTPUT
 		$output | Should -Contain "result=failure"
