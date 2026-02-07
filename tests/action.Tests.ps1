@@ -59,4 +59,16 @@ Describe "Test-MemberExists" {
         $output | Should -Contain "member-exists=false"
         $output | Should -Contain "error-message=Missing required parameters: member_name, owner, and token must be provided."
     }
+	
+	It "writes result=failure and error-message on exception" {
+		Mock Invoke-WebRequest { throw "API Error" }
+
+		Test-MemberExists -MemberName $MemberName -Token $Token -Owner $Owner
+
+		$output = Get-Content $env:GITHUB_OUTPUT
+		$output | Should -Contain "result=failure"
+		$output | Should -Contain "member-exists=false"
+		$output | Where-Object { $_ -match "^error-message=Error: Failed to verify member '$MemberName' exists in organization '$Owner'\. Exception:" } |
+			Should -Not -BeNullOrEmpty
+	}	
 }
