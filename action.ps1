@@ -46,9 +46,10 @@ function Test-MemberExists {
             Add-Content -Path $env:GITHUB_OUTPUT -Value "member-exists=false"
         }
     } catch {
-        Write-Host "Failed to verify member exists in organization."
+		$errorMsg = "Error: Failed to verify member '$MemberName' exists in organization '$Owner'. Exception: $($_.Exception.Message)"
         Add-Content -Path $env:GITHUB_OUTPUT -Value "result=failure"
         Add-Content -Path $env:GITHUB_OUTPUT -Value "member-exists=false"
-		Add-Content -Path $env:GITHUB_OUTPUT -Value "error-message=Failed to verify member exists in organization."
+		Add-Content -Path $env:GITHUB_OUTPUT -Value "error-message=$errorMsg"
+		Write-Host $errorMsg
     }
 }
