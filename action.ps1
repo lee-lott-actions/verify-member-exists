@@ -24,10 +24,9 @@ function Test-MemberExists {
     $uri = "$apiBaseUrl/orgs/$Owner/members/$MemberName"
 
     $headers = @{
-        Authorization  = "Bearer $Token"
-        Accept         = "application/vnd.github+json"
-        "Content-Type" = "application/json"
-        "User-Agent"   = "pwsh-action"
+        Authorization = "Bearer $Token"
+        Accept = "application/vnd.github+json"
+        "X-GitHub-Api-Version" = "2026-03-10"
     }
 
     try {
