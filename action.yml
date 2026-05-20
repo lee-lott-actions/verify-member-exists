@@ -32,4 +32,7 @@ runs:
       shell: pwsh
       run: |
         . "${{ github.action_path }}/action.ps1"
-        Test-MemberExists "${{ inputs.member-name }}" "${{ inputs.token }}" "${{ inputs.owner }}"
+        Test-MemberExists `
+          -MemberName "${{ inputs.member-name }}" `
+          -Token "${{ inputs.token }}" `
+          -Owner "${{ inputs.owner }}"
