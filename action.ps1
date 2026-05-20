@@ -14,9 +14,7 @@ function Test-MemberExists {
         Add-Content -Path $env:GITHUB_OUTPUT -Value "error-message=Missing required parameters: member_name, owner, and token must be provided."
         Add-Content -Path $env:GITHUB_OUTPUT -Value "member-exists=false"
         return
-    }
-
-    Write-Host "Attempting to verify member '$MemberName' exists in organization '$Owner'"
+    }    
 
     # Use MOCK_API if set, otherwise default to GitHub API
     $apiBaseUrl = $env:MOCK_API
@@ -30,10 +28,8 @@ function Test-MemberExists {
     }
 
     try {
-        $response = Invoke-WebRequest -Uri $uri -Headers $headers -Method Get
-
-        Write-Host "API Response Code: $($response.StatusCode)"
-        Write-Host $response.Content
+		Write-Host "Attempting to verify member '$MemberName' exists in organization '$Owner'"
+        $response = Invoke-WebRequest -Uri $uri -Headers $headers -Method Get -SkipHttpErrorCheck
 
         if ($response.StatusCode -eq 204) {
             Write-Host "Member '$MemberName' exists in organization '$Owner'"
